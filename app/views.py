@@ -1,15 +1,19 @@
-
-from django.shortcuts import render, redirect
-from app.forms import ProductModelForm
 from app.models import Product
+from app.forms import ProductModelForm
+from django.core.paginator import Paginator
+from django.shortcuts import render, redirect
 
 
 def index(request):
     products = Product.objects.all().order_by('-id')[:2]
-    paginate_by = 2
+    p = Paginator(Product.objects.all(), 2)
+    page = request.GET.get('page')
+    prod = p.get_page(page)
+    nums = "." * prod.paginator.num_pages
     context = {
         'products': products,
-        'paginate_by': paginate_by,
+        'prod': prod,
+        'nums': nums,
     }
     return render(request, 'app/index.html', context)
 

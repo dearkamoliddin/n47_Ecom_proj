@@ -9,12 +9,14 @@ admin.site.register(AttributeValue)
 admin.site.register(ProductAttribute)
 
 
-# admin.site.unregister(User)
+# admin.site.register(User)
 # admin.site.unregister(Group)
 
 
 class ProductModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'discount', 'price')
+    search_fields = ('name',)
+    list_per_page = 2
 
 
 admin.site.register(Product, ProductModelAdmin)

@@ -52,3 +52,9 @@ class RegisterModelForm(forms.ModelForm):
         return password
 
 
+class CustomUserModelForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = CustomUser
+        exclude = ()

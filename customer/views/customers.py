@@ -3,17 +3,16 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from customer.forms import CustomerModelForm
 from customer.models import Customer
+from django.core.paginator import Paginator
 
 
 def customers(request):
-    search_query = request.GET.get('search')
-    if search_query:
-        customer_list = Customer.objects.filter(
-            Q(full_name__icontains=search_query) | Q(address__icontains=search_query))
-    else:
-        customer_list = Customer.objects.all()
+    customer_list = Customer.objects.all()
+    p = Paginator(customer_list, 2)
+    page_num = request.GET.get('page')
+    page_obj = p.get_page(page_num)
     context = {
-        'customer_list': customer_list,
+        'page_obj': page_obj,
     }
     return render(request, 'customer/customers.html', context)
 

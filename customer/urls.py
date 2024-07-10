@@ -3,7 +3,7 @@ from customer.views.auth import login_page, logout_page, register_page
 from customer.views.customers import customers, customer_detail, add_customer, delete_customer, edit_customer
 
 urlpatterns = [
-    path('customer/', customers, name='customer'),
+    path('customer/', customers, name='customer_l'),
     path('add-customer/', add_customer, name='add_customer'),
     path('customer/<int:customer_id>/', customer_detail, name='customer_detail'),
     path('customer/<int:pk>/delete', delete_customer, name='delete_customer'),
