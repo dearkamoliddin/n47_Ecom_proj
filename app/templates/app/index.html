@@ -2339,7 +2339,7 @@
             <div class="card">
                 <div class="card-body p-0 overflow-hidden">
                     <div class="row g-0">
-                        {% for product in prod %}
+                        {% for product in page_obj %}
                             <div class="col-12 p-card">
                                 <div class="row">
                                     <div class="col-sm-5 col-md-4">
@@ -2420,25 +2420,21 @@
 
 
                 <div class="card-footer border-top d-flex justify-content-center pagination">
-                    {% if prod.has_previous %}
-                    <a href="?page=1">
-                    <button class="btn btn-falcon-default btn-sm me-2" type="button"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="Prev">
-                            <span class="fas fa-chevron-left"></span>
-                    </button></a>
+                    <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
                     {% endif %}
 
-                    {% for i in nums %}
-                    <a class="btn btn-sm btn-falcon-default me-2 page-item" href="?page={{ forloop.counter }}">
-                        <span>{{ forloop.counter }}</span></a>
-                    {% endfor %}
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
 
-                    {% if prod.has_next %}
-                        <a href="?page={{ prod.next_page_number }}">
-                    <button class="btn btn-falcon-default btn-sm" type="button" data-bs-toggle="tooltip"
-                            data-bs-placement="top" title="Next"><span class="fas fa-chevron-right"></span></button>
-                        </a>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                     {% endif %}
+                </span>
                 </div>
             </div>
 

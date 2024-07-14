@@ -1,85 +1,18 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+{% block title %}
+    Product Detail
+{% endblock %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <!-- ===============================================-->
-    <!--    Document Title-->
-    <!-- ===============================================-->
-    <title>Falcon | Dashboard &amp; Web App Template</title>
-
-
-    <!-- ===============================================-->
-    <!--    Favicons-->
-    <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
-    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
-    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
-    <meta name="theme-color" content="#ffffff">
-    <script src="{% static 'assets/js/config.js' %}"></script>
-    <script src="{% static 'vendors/overlayscrollbars/OverlayScrollbars.min.js' %}"></script>
-
-
-    <!-- ===============================================-->
-    <!--    Stylesheets-->
-    <!-- ===============================================-->
-    <link href="{% static 'vendors/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap"
-          rel="stylesheet">
-    <link href="{% static 'vendors/overlayscrollbars/OverlayScrollbars.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/theme-rtl.min.css' %}" rel="stylesheet" id="style-rtl">
-    <link href="{% static 'assets/css/theme.min.css' %}" rel="stylesheet" id="style-default">
-    <link href="{% static 'assets/css/user-rtl.min.css' %}" rel="stylesheet" id="user-style-rtl">
-    <link href="{% static 'assets/css/user.min.css' %}" rel="stylesheet" id="user-style-default">
-    <script>
-        var isRTL = JSON.parse(localStorage.getItem('isRTL'));
-        if (isRTL) {
-            var linkDefault = document.getElementById('style-default');
-            var userLinkDefault = document.getElementById('user-style-default');
-            linkDefault.setAttribute('disabled', true);
-            userLinkDefault.setAttribute('disabled', true);
-            document.querySelector('html').setAttribute('dir', 'rtl');
-        } else {
-            var linkRTL = document.getElementById('style-rtl');
-            var userLinkRTL = document.getElementById('user-style-rtl');
-            linkRTL.setAttribute('disabled', true);
-            userLinkRTL.setAttribute('disabled', true);
-        }
-    </script>
-</head>
-
-
-<body>
-
+{% block product_detail_content %}
 <!-- ===============================================-->
 <!--    Main Content-->
 <!-- ===============================================-->
 <main class="main" id="top">
     <div class="container" data-layout="container">
-        <script>
-            var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-            if (isFluid) {
-                var container = document.querySelector('[data-layout]');
-                container.classList.remove('container');
-                container.classList.add('container-fluid');
-            }
-        </script>
+
         <nav class="navbar navbar-light navbar-vertical navbar-expand-xl">
-            <script>
-                var navbarStyle = localStorage.getItem("navbarStyle");
-                if (navbarStyle && navbarStyle !== 'transparent') {
-                    document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
-                }
-            </script>
+
             <div class="d-flex align-items-center">
                 <div class="toggle-icon-wrapper">
 
@@ -2308,6 +2241,7 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
+
                         <div class="col-lg-6 mb-4 mb-lg-0">
                             <div class="product-slider" id="galleryTop">
                                 <div class="swiper-container theme-slider position-lg-absolute all-0"
@@ -2327,8 +2261,13 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <h5>{{ product.name }}</h5><a class="fs--1 mb-2 d-block" href="#!">Computer &amp;
-                            Accessories</a>
+
+                            <div class="d-flex justify-content-between">
+                                <h5>{{ product.name }}</h5>
+                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'update_product' product.id %}">Edit</a></button>
+                            <button type="button" class="btn btn-outline-danger" value="confirm"><a href="{% url 'product_delete' product.id %}">Delete</a></button>
+                        </div>
+                            <a class="fs--1 mb-2 d-block" href="#!">Computer &amp; Accessories</a>
                             <div class="fs--2 mb-3 d-inline-block text-decoration-none"><span
                                     class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span
                                     class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span
@@ -2345,10 +2284,11 @@
                       <del class="me-1">${{ product.price }}</del><strong>-{{ product.discount }}%</strong></span></h4>
                             <p class="fs--1 mb-1"><span>Shipping Cost: </span><strong>$50</strong></p>
                             <p class="fs--1">Stock: <strong class="text-success">Available</strong></p>
-                            <p class="fs--1 mb-3">Tags: <a class="ms-2" href="#!">Computer,</a><a class="ms-1"
-                                                                                                  href="#!">Mac
-                                Book,</a><a class="ms-1" href="#!">Mac Book Pro,</a><a class="ms-1"
-                                                                                       href="#!">Laptop </a></p>
+                            <p class="fs--1 mb-3">Tags: <a class="ms-2" href="#!">Computer,</a>
+                                <a class="ms-1" href="#!">Mac Book,</a>
+                                <a class="ms-1" href="#!">Mac Book Pro,</a>
+                                <a class="ms-1" href="#!">Laptop </a>
+                            </p>
                             <div class="row">
                                 <div class="col-auto pe-0">
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
@@ -2372,6 +2312,7 @@
                                         class="far fa-heart me-1"></span>282</a></div>
                             </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -2718,21 +2659,4 @@
 </a>
 
 
-<!-- ===============================================-->
-<!--    JavaScripts-->
-<!-- ===============================================-->
-<script src="{% static 'vendors/popper/popper.min.js' %}"></script>
-<script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
-<script src="{% static 'vendors/anchorjs/anchor.min.js' %}"></script>
-<script src="{% static 'vendors/is/is.min.js' %}"></script>
-<script src="{% static 'vendors/swiper/swiper-bundle.min.js' %}"></script>
-<script src="{% static 'vendors/rater-js/index.js' %}"></script>
-<script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
-<script src="{% static 'vendors/lodash/lodash.min.js' %}"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-<script src="{% static 'vendors/list.js/list.min.js' %}"></script>
-<script src="{% static 'assets/js/theme.js' %}"></script>
-
-</body>
-
-</html>
+{% endblock %}

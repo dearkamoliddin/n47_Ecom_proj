@@ -1,5 +1,6 @@
 from django import forms
 from customer.models import Customer, CustomUser
+from django.contrib.auth.models import Permission
 
 
 class CustomerModelForm(forms.ModelForm):
@@ -58,3 +59,18 @@ class CustomUserModelForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         exclude = ()
+
+
+EXPORT_FORMAT_CHOICES = [
+    ('csv', 'CSV'),
+    ('xlsx', 'Excel'),
+    ('json', 'JSON'),
+]
+
+
+class ExportForm(forms.Form):
+    export_format = forms.ChoiceField(choices=EXPORT_FORMAT_CHOICES)
+
+
+class ImportForm(forms.Form):
+    import_format = forms.ChoiceField(choices=EXPORT_FORMAT_CHOICES)

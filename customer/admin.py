@@ -1,6 +1,7 @@
 from django.contrib import admin
 from customer.models import Customer, CustomUser
 from customer.forms import CustomUserModelForm
+from import_export.admin import ImportExportModelAdmin
 
 # admin.site.register(Customer)
 # admin.site.register(CustomUser)
