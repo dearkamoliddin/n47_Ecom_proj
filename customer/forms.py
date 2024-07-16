@@ -1,4 +1,5 @@
 from django import forms
+from customer.authentication import  AuthenticationForm
 from customer.models import Customer, CustomUser
 from django.contrib.auth.models import Permission
 
@@ -9,7 +10,13 @@ class CustomerModelForm(forms.ModelForm):
         exclude = ()
 
 
-class LoginForm(forms.Form):
+class SendEmailForm(forms.Form):
+    subject = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
+    from_user = forms.EmailField()
+    to = forms.EmailField()
+
+class LoginForm(AuthenticationForm):
     email = forms.EmailField()
     password = forms.CharField(max_length=255)
 
