@@ -16,6 +16,7 @@ class SendEmailForm(forms.Form):
     from_user = forms.EmailField()
     to = forms.EmailField()
 
+
 class LoginForm(AuthenticationForm):
     email = forms.EmailField()
     password = forms.CharField(max_length=255)
