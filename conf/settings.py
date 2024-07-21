@@ -14,10 +14,8 @@ from pathlib import Path
 import os
 import environ
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -35,7 +33,6 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'import_export',
+    'social_django',
 
     'app',
     'customer',
@@ -82,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'conf.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -96,7 +93,6 @@ DATABASES = {
         'PORT': env('PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -116,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -127,7 +122,6 @@ TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 
 USE_TZ = True
-
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
@@ -150,3 +144,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'dearkamoliddin@gmail.com'
 EMAIL_HOST_PASSWORD = 'vlvt cmfk jcdn fvcm'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1061712195737-ff33d3ug73a7qgse0g9tni1v3aoo2ssm.apps.googleusercontent.com',
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

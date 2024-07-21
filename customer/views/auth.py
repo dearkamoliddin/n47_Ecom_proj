@@ -98,14 +98,10 @@ def activate_email(request, user, to_email):
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
-        'protocol': 'https' if request.is_secure() else 'http',
+        'protocol': 'http',
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
-    if email.send():
-        messages.success(request, f"Dear {user}, pls go to your email {to_email} \
-        inbox and click on received activation link to confirm your email.")
-    else:
-        message.error(request, "Sorry, Problem with your email is not verified.")
+    email.send()
 
 
 def register_page(request):
