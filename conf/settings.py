@@ -149,5 +149,7 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1061712195737-ff33d3ug73a7qgse0g9tni1v3aoo2ssm.apps.googleusercontent.com',
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '553577543567-pihbcjmnv3j22ma92laabp42j9k5vh21.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+LOGIN_REDIRECT_URL = '/customer/customer_list/'
