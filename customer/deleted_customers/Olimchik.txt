@@ -1,0 +1,7 @@
+{
+    "id": 22,
+    "full_name": "Olimchik",
+    "email": "olimchik@gmail.com",
+    "phone": "+998-94-828-9395",
+    "address": "2392 Main Avenue, Penasauka, New Jersey 02139"
+}

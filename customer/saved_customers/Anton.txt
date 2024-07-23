@@ -1,0 +1,7 @@
+{
+    "id": null,
+    "full_name": "Anton",
+    "email": "anton@gmail.com",
+    "phone": "90 924 50 02",
+    "address": "2392 Main Avenue, Penasauka, New Jersey 02139"
+}
